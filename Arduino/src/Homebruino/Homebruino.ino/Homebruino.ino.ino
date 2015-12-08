@@ -14,7 +14,7 @@
 #define BROCHE_ONEWIRE 2 // Broche utilisée pour le bus 1-Wire
 #define BROCHE_RELAY 0
 #define DEBUG 1
-#define DHCP 1
+#define DHCP 0
 
 
 char* myDNSName = "EDefaultDNS";
@@ -327,7 +327,7 @@ void setup(void) {
       
     retry = 0;
     while ((WiFi.status() != WL_CONNECTED) and (retry<nbRetryWifi)) {
-      delay(1000);
+      delay(2000);
       LOG(".");
       retry += 1;
       }
@@ -341,6 +341,7 @@ void setup(void) {
       }
     else {
         Connected=false;
+        indWifi+=1;
       }
     }
   if (mdns.begin(myDNSName, WiFi.localIP())) {

@@ -12,7 +12,7 @@ const size_t nbRetryWifi = 10;
 const size_t nbWifi = 3;
 const configWifi tabWifi[nbWifi]= {
   {"Homebruino_FG",
-    "Livebox_Taspoff",
+    "Livebox-Taspoff",
     "Athena_96",
     0,
     {192,168,1,213},
