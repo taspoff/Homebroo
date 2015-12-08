@@ -5,6 +5,9 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <PID_v1.h>
+#include "ConfigWifi.h"
+#include "API.h"
+#include "IHM.h"
 
 
 #define DS18B20 0x28     // Adresse 1-Wire du DS18B20
@@ -14,19 +17,15 @@
 #define DHCP 1
 
 
-const char* DNS = "FG_ESPID_02";
-//const char* ssid = "Livebox_Taspoff";
-//const char* password = "Athena_96";
-const char* ssid = "Livebox-77b6";
-const char* password = "kartopulimon";
-//const char* ssid = "Livebox-F444";
-//const char* password = "6F1A2A23E2FF676769319C7C91";
+char* myDNSName = "EDefaultDNS";
 
-const uint8_t myIP[4]={192,168,1,213};
-const uint8_t myMask[4]={255,255,255,0};
-const uint8_t myDNS[4]={192,168,1,1};
-const uint8_t myGateway[4]={192,168,1,1};
 
+ uint8_t myIP[4]={192,168,1,213};
+ uint8_t myMask[4]={255,255,255,0};
+ uint8_t myDNS[4]={192,168,1,1};
+ uint8_t myGateway[4]={192,168,1,1};
+ char*   myssid = "";
+ char*   mypassword = "";
 
 MDNSResponder mdns;
 ESP8266WebServer server(80);
@@ -67,7 +66,6 @@ void handleFrame() {
   Page.replace("CHAMP_000", IP);
   server.send(200, "text/html", Page);
 }
-
 void  handleFrameConsole() {
   String Page;
   Page = "<html><head><title>FG_PID V01</title></head>";
@@ -128,7 +126,6 @@ void  handleFrameConsole() {
 
   server.send(200, "text/html", Page);
 }
-
 String JoliePage() {
   String Page;
   Page = "<html><head><title>FG_PID V01</title></head>";
@@ -190,38 +187,32 @@ String JoliePage() {
   LOG (Page);
   return Page;
 }
-
-
-
 void handleGetTemp() {
 
   String Ret;
-  Ret = "{\"Sensor\":\"" + String(DNS) + "\",\"Temp\":" + String(tempSensor) + "}";
+  Ret = "{\"Sensor\":\"" + String(myDNSName) + "\",\"Temp\":" + String(tempSensor) + "}";
   server.send(200, "text/plain", Ret);
   LOG(Ret);
   
 }
-
 void handleFrameSensor() {
 
   String Ret;
-  Ret = "<html><head><meta http-equiv='refresh' content='2'></head><body>Sensor " + String(DNS) + " :" + String(tempSensor) + " <SUP>o</SUP>C <br>Chauffage  "+String((Output/WindowSize*100))+" % </body></html>";
+  Ret = "<html><head><meta http-equiv='refresh' content='2'></head><body>Sensor " + String(myDNSName) + " :" + String(tempSensor) + " <SUP>o</SUP>C <br>Chauffage  "+String((Output/WindowSize*100))+" % </body></html>";
   server.send(200, "text/html", Ret);
   LOG(Ret);
   
 }
-
 void handleGetRelay() {
   String Ret, stateRelay;
   if (relay)
     stateRelay = "Up";
   else
     stateRelay = "Down";
-  Ret = "{\"Sensor\":\"" + String(DNS) + "\",\"Relay\":\"" + stateRelay + "\"}";
+  Ret = "{\"Sensor\":\"" + String(myDNSName) + "\",\"Relay\":\"" + stateRelay + "\"}";
   server.send(200, "text/plain", Ret);
   LOG(Ret);
 }
-
 void handleSetRelay() {
   String stateRelay;
   stateRelay = server.arg("Relay");
@@ -242,17 +233,14 @@ void handleSetActionRelay() {
   actionRelay = server.arg("ActionRelay");
   LOG("MAJ de actionrelay = "+actionRelay);
 }
-  
 void handleSetAffectation() {
   affectation = server.arg("Affectation");
   LOG("MAJ de affectation = "+affectation);
 }
-
 void handleSetWantedTemp() {
   wantedTemp = server.arg("WantedTemp").toFloat();
   LOG("MAJ de wantedTemp : "+String(wantedTemp));
 }
-
 void handleSetData() {
   
   String gPID = server.arg("PID");
@@ -264,7 +252,6 @@ void handleSetData() {
   handleSetActionRelay();
   handleRoot();
 }
-
 void handleStartPID() {
   runPID=1;
   handleRoot();
@@ -278,7 +265,6 @@ void handleRoot() {
   Ret = JoliePage();
   server.send(200, "text/html", Ret) ;
 }
-
 void handleNotFound() {
 
   String message = "File Not Found\n\n";
@@ -295,56 +281,98 @@ void handleNotFound() {
   server.send(404, "text/plain", message);
 
 }
-void printAddress(DeviceAddress deviceAddress)
-{
+
+
+void printAddress(DeviceAddress deviceAddress){
   for (uint8_t i = 0; i < 8; i++)
   {
-    if (deviceAddress[i] < 16) Serial.print("0");
-    Serial.print(deviceAddress[i], HEX);
+    if (deviceAddress[i] < 16) 
+      LOG("0");
+    LOG(String(deviceAddress[i], HEX));
   }
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////
 void setup(void) {
-
-
-  Serial.begin(115200);
+  boolean Connected=false;
+  size_t retry, indWifi=0;
+ 
+  if (DEBUG) Serial.begin(115200);
   pinMode(BROCHE_RELAY,OUTPUT);
-  WiFi.begin(ssid, password);
-  Serial.println("");
-  if(!DHCP){
-    WiFi.config(IPAddress(myIP),IPAddress(myGateway),IPAddress(myMask));
-  }
+  while(!Connected)
+  {
+    //myssid=tabWifi[indWifi].ssid;
+    //mypassword=tabWifi[indWifi].password;
+    myIP[0] = tabWifi[indWifi].IP[0];
+      myIP[1] = tabWifi[indWifi].IP[1];
+        myIP[2] = tabWifi[indWifi].IP[2];
+          myIP[3] = tabWifi[indWifi].IP[3];
+    myGateway[0]=tabWifi[indWifi].Gateway[0];
+      myGateway[1]=tabWifi[indWifi].Gateway[1];
+        myGateway[2]=tabWifi[indWifi].Gateway[2];
+          myGateway[3]=tabWifi[indWifi].Gateway[3];
+    myMask[0]=tabWifi[indWifi].Mask[0];
+      myMask[1]=tabWifi[indWifi].Mask[1];
+        myMask[2]=tabWifi[indWifi].Mask[2];
+          myMask[3]=tabWifi[indWifi].Mask[3];
+    myDNSName=tabWifi[indWifi].DNS;
+    const char* TempSSID= tabWifi[indWifi].ssid;
+    const char* TempPasswd = tabWifi[indWifi].password;
+    WiFi.begin(TempSSID,TempPasswd);
+    LOG(String("trying "+(String)TempSSID));
+    if(!DHCP){
+      WiFi.config(IPAddress(myIP),IPAddress(myGateway),IPAddress(myMask));
+      }
+      
+    retry = 0;
+    while ((WiFi.status() != WL_CONNECTED) and (retry<nbRetryWifi)) {
+      delay(1000);
+      LOG(".");
+      retry += 1;
+      }
+    if(WiFi.status() == WL_CONNECTED){
+        LOG("");
+        LOG("Connected to ");
+        LOG(String(myssid));
+        LOG("IP address: ");
+        LOG(String(WiFi.localIP()));
+        Connected=true;
+      }
+    else {
+        Connected=false;
+      }
+    }
+  if (mdns.begin(myDNSName, WiFi.localIP())) {
+    LOG("MDNS responder started");
+    }
+  
 
   // Wait for connection
   ds.begin();
-   Serial.print("Found ");
-   Serial.print(ds.getDeviceCount(), DEC);
-    Serial.println(" 18B20 devices.");
-    Serial.print("Parasite power is: "); 
-    if (ds.isParasitePowerMode()) Serial.println("ON");
-    else Serial.println("OFF");
-      if (!ds.getAddress(dsMac, 0)) Serial.println("Unable to find address for Device 0"); 
-  Serial.print("Device 0 Address: ");
+   
+  LOG("Found ");
+  LOG(String(ds.getDeviceCount(), DEC));
+  LOG(" 18B20 devices.");
+  LOG("Parasite power is: "); 
+  if (ds.isParasitePowerMode()) 
+    LOG("ON");
+  else 
+    LOG("OFF");
+  if (!ds.getAddress(dsMac, 0)) 
+    LOG("Unable to find address for Device 0"); 
+  LOG("Device 0 Address: ");
   printAddress(dsMac);
-  Serial.println();
+  LOG("");
+
+  
   ds.setResolution(dsMac,9);
 
-windowStartTime = millis(); timeTemp=windowStartTime;
-myPID.SetOutputLimits(0, WindowSize);  
-myPID.SetMode(AUTOMATIC);
+  windowStartTime = millis(); timeTemp=windowStartTime;
+  myPID.SetOutputLimits(0, WindowSize);  
+  myPID.SetMode(AUTOMATIC);
 
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println("");
-  Serial.print("Connected to ");
-  Serial.println(ssid);
-  Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());
-
-  if (mdns.begin("ESP1", WiFi.localIP())) {
-    Serial.println("MDNS responder started");
-  }
+ 
 
   server.on("/", handleRoot);
   server.on("/1", handleFrame);
@@ -360,7 +388,7 @@ myPID.SetMode(AUTOMATIC);
   server.onNotFound(handleNotFound);
 
   server.begin();
-  Serial.println("HTTP server started");
+  LOG("HTTP server started");
 }
 
 void loop(void) {
