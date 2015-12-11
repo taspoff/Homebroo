@@ -54,7 +54,10 @@ void LOG(String S) {
   if (DEBUG) Serial.println(S);
 }
 
-
+void handleUp() {
+  String Page="<html><body>Up</body></html>";
+  server.send(200,"text/html",Page);
+}
 void handleFrame() {
   String Page;
   Page = "<html><head><title>FG_PID V01</title></head>";
@@ -288,7 +291,8 @@ void printAddress(DeviceAddress deviceAddress){
   {
     if (deviceAddress[i] < 16) 
       LOG("0");
-    LOG(String(deviceAddress[i], HEX));
+    if (DEBUG) 
+       Serial.println(String(deviceAddress[i], HEX));
   }
 }
 
@@ -296,11 +300,11 @@ void printAddress(DeviceAddress deviceAddress){
 ///////////////////////////////////////////////////////////////////////////////////////
 void setup(void) {
   boolean Connected=false;
-  size_t retry, indWifi=0;
+  size_t retry, indWifi=1;
  
   if (DEBUG) {
     Serial.begin(115200);
-    Serial.println("/n/n/n/n/n/n");
+    Serial.println("\n\n\n\n\n\n\n\n");
   };
   
   pinMode(BROCHE_RELAY,OUTPUT);
@@ -385,7 +389,7 @@ void setup(void) {
  
 
   server.on("/", handleRoot);
-  server.on("/1", handleFrame);
+  server.on("/up", handleUp);
   server.on("/getTemp", handleGetTemp);
   server.on("/getRelay", handleGetRelay);
   server.on("/setRelay", handleSetRelay);
