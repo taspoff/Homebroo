@@ -8,7 +8,7 @@ struct configWifi {
    uint8_t Gateway[4];
 };
 
-const size_t nbRetryWifi = 10;
+const size_t nbRetryWifi = 20;
 const size_t nbWifi = 3;
 const configWifi tabWifi[nbWifi]= {
   {"Homebruino_FG",

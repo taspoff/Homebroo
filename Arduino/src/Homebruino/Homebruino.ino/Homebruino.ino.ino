@@ -50,13 +50,17 @@ unsigned long windowStartTime,timeTemp;
 String affectation = "N-A";
 String urldisplay = "truc";
 
-void LOG(String S) {
+void LOGln(String S) {
   if (DEBUG) Serial.println(S);
+}
+void LOG(String S) {
+  if (DEBUG) Serial.print(S);
 }
 
 void handleUp() {
   String Page="<html><body>Up</body></html>";
   server.send(200,"text/html",Page);
+  LOGln("Up Asked");
 }
 void handleFrame() {
   String Page;
@@ -68,8 +72,9 @@ void handleFrame() {
   IP=String(IPA[0])+"."+String(IPA[1])+"."+String(IPA[2])+"."+String(IPA[3]);
   Page.replace("CHAMP_000", IP);
   server.send(200, "text/html", Page);
+  LOGln("Frame asked");
 }
-void  handleFrameConsole() {
+/*void  handleFrameConsole() {
   String Page;
   Page = "<html><head><title>FG_PID V01</title></head>";
   Page += "<body><center><Title>Senseur : CHAMP_001</title> IP = CHAMP_000";
@@ -129,8 +134,10 @@ void  handleFrameConsole() {
 
   server.send(200, "text/html", Page);
 }
+
+*/
 String JoliePage() {
-  String Page;
+  String Page = JPage;
   Page = "<html><head><title>FG_PID V01</title></head>";
   Page += "<body><center><Title>Senseur : CHAMP_001</title> IP = CHAMP_000";
   Page += "<Frame name='pilotage'> <Form target='pilotage' action='http://CHAMP_000/setData' method='get'><P>";
@@ -187,7 +194,6 @@ String JoliePage() {
     Page.replace("CHAMP_009", "");
  
   };
-  LOG (Page);
   return Page;
 }
 void handleGetTemp() {
@@ -195,7 +201,7 @@ void handleGetTemp() {
   String Ret;
   Ret = "{\"Sensor\":\"" + String(myDNSName) + "\",\"Temp\":" + String(tempSensor) + "}";
   server.send(200, "text/plain", Ret);
-  LOG(Ret);
+  LOGln(Ret);
   
 }
 void handleFrameSensor() {
@@ -203,7 +209,7 @@ void handleFrameSensor() {
   String Ret;
   Ret = "<html><head><meta http-equiv='refresh' content='2'></head><body>Sensor " + String(myDNSName) + " :" + String(tempSensor) + " <SUP>o</SUP>C <br>Chauffage  "+String((Output/WindowSize*100))+" % </body></html>";
   server.send(200, "text/html", Ret);
-  LOG(Ret);
+  LOGln(Ret);
   
 }
 void handleGetRelay() {
@@ -214,7 +220,7 @@ void handleGetRelay() {
     stateRelay = "Down";
   Ret = "{\"Sensor\":\"" + String(myDNSName) + "\",\"Relay\":\"" + stateRelay + "\"}";
   server.send(200, "text/plain", Ret);
-  LOG(Ret);
+  LOGln(Ret);
 }
 void handleSetRelay() {
   String stateRelay;
@@ -222,27 +228,27 @@ void handleSetRelay() {
   if (stateRelay == "Up") {
     relay = 1;
     digitalWrite(BROCHE_RELAY, HIGH);
-    LOG("UP de Relay");
+    LOGln("UP de Relay");
   }
   else {
     if (stateRelay == "Down") {
       relay = 0;
       digitalWrite(BROCHE_RELAY, LOW);
-      LOG("DOWN de Relay");
+      LOGln("DOWN de Relay");
     }
   }
 }
 void handleSetActionRelay() {
   actionRelay = server.arg("ActionRelay");
-  LOG("MAJ de actionrelay = "+actionRelay);
+  LOGln("MAJ de actionrelay = "+actionRelay);
 }
 void handleSetAffectation() {
   affectation = server.arg("Affectation");
-  LOG("MAJ de affectation = "+affectation);
+  LOGln("MAJ de affectation = "+affectation);
 }
 void handleSetWantedTemp() {
   wantedTemp = server.arg("WantedTemp").toFloat();
-  LOG("MAJ de wantedTemp : "+String(wantedTemp));
+  LOGln("MAJ de wantedTemp : "+String(wantedTemp));
 }
 void handleSetData() {
   
@@ -289,10 +295,14 @@ void handleNotFound() {
 void printAddress(DeviceAddress deviceAddress){
   for (uint8_t i = 0; i < 8; i++)
   {
+    LOG("0x");
     if (deviceAddress[i] < 16) 
       LOG("0");
-    if (DEBUG) 
-       Serial.println(String(deviceAddress[i], HEX));
+    if (DEBUG) {
+       Serial.print(deviceAddress[i],HEX);
+       if (i < 7) LOG(","); 
+    }
+      
   }
 }
 
@@ -304,7 +314,7 @@ void setup(void) {
  
   if (DEBUG) {
     Serial.begin(115200);
-    Serial.println("\n\n\n\n\n\n\n\n");
+    Serial.println(String(JBanner));
   };
   
   pinMode(BROCHE_RELAY,OUTPUT);
@@ -313,17 +323,17 @@ void setup(void) {
   ds.begin();
   LOG("Found ");
   LOG(String(ds.getDeviceCount(), DEC));
-  LOG(" 18B20 devices.");
+  LOGln(" 18B20 devices.");
   LOG("Parasite power is: "); 
   if (ds.isParasitePowerMode()) 
-    LOG("ON");
+    LOGln("ON");
   else 
-    LOG("OFF");
+    LOGln("OFF");
   if (!ds.getAddress(dsMac, 0)) 
-    LOG("Unable to find address for Device 0"); 
+    LOGln("Unable to find address for Device 0"); 
   LOG("Device 0 Address: ");
   printAddress(dsMac);
-  LOG("");
+  LOGln("");
 
   
   ds.setResolution(dsMac,9);
@@ -353,7 +363,7 @@ void setup(void) {
     const char* TempSSID= tabWifi[indWifi].ssid;
     const char* TempPasswd = tabWifi[indWifi].password;
     WiFi.begin(TempSSID,TempPasswd);
-    LOG(String("trying "+(String)TempSSID));
+    LOGln(String("\ntrying "+(String)TempSSID));
     if(!DHCP){
       WiFi.config(IPAddress(myIP),IPAddress(myGateway),IPAddress(myMask));
       }
@@ -365,11 +375,17 @@ void setup(void) {
       retry += 1;
       }
     if(WiFi.status() == WL_CONNECTED){
-        LOG("");
-        LOG("Connected to ");
-        LOG(String(myssid));
-        LOG("IP address: ");
-        LOG(String(WiFi.localIP()));
+        LOGln("Gotcha!");
+        LOG("Connected to [");
+        LOG(String(TempSSID));
+        LOG("] as [");
+        LOG(myDNSName);
+        LOGln("]");
+        
+        LOG("IP address: [");
+        IPAddress ip = WiFi.localIP();
+        LOG(String(ip[0]) + '.' + String(ip[1]) + '.' + String(ip[2]) + '.' + String(ip[3]));
+        LOGln("]");
         Connected=true;
       }
     else {
@@ -380,7 +396,7 @@ void setup(void) {
       }
     }
   if (mdns.begin(myDNSName, WiFi.localIP())) {
-    LOG("MDNS responder started");
+    LOGln("MDNS responder started");
     }
   
 
@@ -397,7 +413,10 @@ void setup(void) {
   server.on("/stopPID", handleStopPID);
   server.on("/setData", handleSetData);
   server.on("/sensor", handleFrameSensor);
-  server.on("/console", handleFrameConsole);
+
+
+  
+  //server.on("/console", handleFrameConsole);
   
   server.onNotFound(handleNotFound);
 
