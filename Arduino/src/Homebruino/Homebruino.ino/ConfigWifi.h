@@ -23,7 +23,7 @@ const configWifi tabWifi[nbWifi]= {
     "Livebox-77b6",
     "kartopulimon",
     0,
-    {192,168,1,213},
+    {192,168,1,214},
     {255,255,255,0},
     {192,168,1,1}
   },

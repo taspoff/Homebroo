@@ -298,8 +298,37 @@ void setup(void) {
   boolean Connected=false;
   size_t retry, indWifi=0;
  
-  if (DEBUG) Serial.begin(115200);
+  if (DEBUG) {
+    Serial.begin(115200);
+    Serial.println("/n/n/n/n/n/n");
+  };
+  
   pinMode(BROCHE_RELAY,OUTPUT);
+
+ // Wait for thermal connection
+  ds.begin();
+  LOG("Found ");
+  LOG(String(ds.getDeviceCount(), DEC));
+  LOG(" 18B20 devices.");
+  LOG("Parasite power is: "); 
+  if (ds.isParasitePowerMode()) 
+    LOG("ON");
+  else 
+    LOG("OFF");
+  if (!ds.getAddress(dsMac, 0)) 
+    LOG("Unable to find address for Device 0"); 
+  LOG("Device 0 Address: ");
+  printAddress(dsMac);
+  LOG("");
+
+  
+  ds.setResolution(dsMac,9);
+
+  windowStartTime = millis(); timeTemp=windowStartTime;
+  myPID.SetOutputLimits(0, WindowSize);  
+  myPID.SetMode(AUTOMATIC);
+
+  
   while(!Connected)
   {
     //myssid=tabWifi[indWifi].ssid;
@@ -342,6 +371,8 @@ void setup(void) {
     else {
         Connected=false;
         indWifi+=1;
+        if(indWifi == nbWifi)
+          indWifi = 0;
       }
     }
   if (mdns.begin(myDNSName, WiFi.localIP())) {
@@ -349,29 +380,7 @@ void setup(void) {
     }
   
 
-  // Wait for connection
-  ds.begin();
-   
-  LOG("Found ");
-  LOG(String(ds.getDeviceCount(), DEC));
-  LOG(" 18B20 devices.");
-  LOG("Parasite power is: "); 
-  if (ds.isParasitePowerMode()) 
-    LOG("ON");
-  else 
-    LOG("OFF");
-  if (!ds.getAddress(dsMac, 0)) 
-    LOG("Unable to find address for Device 0"); 
-  LOG("Device 0 Address: ");
-  printAddress(dsMac);
-  LOG("");
-
-  
-  ds.setResolution(dsMac,9);
-
-  windowStartTime = millis(); timeTemp=windowStartTime;
-  myPID.SetOutputLimits(0, WindowSize);  
-  myPID.SetMode(AUTOMATIC);
+ 
 
  
 
