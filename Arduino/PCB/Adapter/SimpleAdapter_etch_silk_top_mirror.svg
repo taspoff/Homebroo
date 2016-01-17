@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!-- Created with Fritzing (http://www.fritzing.org/) -->
+<svg xmlns="http://www.w3.org/2000/svg" baseProfile="tiny" y="0in" xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 70.6867 76.3135" height="1.05991in" width="0.98176in" version="1.2"  x="0in">
+ <g transform="matrix(-1, 0, 0, 1, 70.6867, 0)">
+  <g partID="854156522">
+   <g id="silkscreen">
+    <rect y="0.288" fill="none" stroke="black" height="75.7375" width="70.1107" stroke-width="0.576" x="0.288"/>
+   </g>
+  </g>
+  <g partID="854156520">
+   <g id="board">
+    <rect y="0.288" fill="none" stroke="black" id="boardoutline" height="75.7375" width="70.1107" stroke-width="0.5" fill-opacity="0.5" x="0.288"/>
+   </g>
+  </g>
+  <g partID="854156651">
+   <g transform="translate(36.8,26.0358)">
+    <g id="silkscreen">
+     <line stroke="black" y1="1.44" y2="30.24" x1="1.44" x2="1.44" stroke-width="0.72"/>
+     <line stroke="black" y1="30.24" y2="30.24" x1="1.44" x2="15.84" stroke-width="0.72"/>
+     <line stroke="black" y1="30.24" y2="1.44" x1="15.84" x2="15.84" stroke-width="0.72"/>
+     <line stroke="black" y1="1.44" y2="1.44" x1="15.84" x2="1.44" stroke-width="0.72"/>
+     <line stroke="black" y1="3.96" y2="1.44" x1="1.44" x2="3.96" stroke-width="0.36"/>
+     <!-- 120 -->
+    </g>
+   </g>
+  </g>
+  <g partID="854156522">
+   <g id="silkscreen">
+    <rect y="0.288" fill="none" stroke="black" height="75.7375" width="70.1107" stroke-width="0.576" x="0.288"/>
+   </g>
+  </g>
+  <g partID="854158130">
+   <g transform="translate(52.9744,49.4955)">
+    <g id="silkscreen">
+     <text y="4.31738" fill="black" id="label" font-size="4.79711" font-family="OCRA" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" stroke-width="0" text-anchor="middle" x="4.79711">RX</text>
+    </g>
+   </g>
+  </g>
+  <g partID="854158360">
+   <g transform="translate(16.4224,49.7986)">
+    <g id="silkscreen">
+     <text y="4.31738" fill="black" id="label" font-size="4.7971" font-family="OCRA" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" stroke-width="0" text-anchor="middle" x="7.19564">RST</text>
+    </g>
+   </g>
+  </g>
+  <g partID="854158340">
+   <g transform="translate(16.8216,42.5742)">
+    <g id="silkscreen">
+     <text y="4.31738" fill="black" id="label" font-size="4.7971" font-family="OCRA" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" stroke-width="0" text-anchor="middle" x="7.19564">VCC</text>
+    </g>
+   </g>
+  </g>
+  <g partID="854158320">
+   <g transform="translate(14.8856,35.6831)">
+    <g id="silkscreen">
+     <text y="4.31738" fill="black" id="label" font-size="4.7971" font-family="OCRA" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" stroke-width="0" text-anchor="middle" x="11.9928">CH_PD</text>
+    </g>
+   </g>
+  </g>
+  <g partID="854158300">
+   <g transform="translate(16.9888,28.0392)">
+    <g id="silkscreen">
+     <text y="4.31738" fill="black" id="label" font-size="4.79711" font-family="OCRA" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" stroke-width="0" text-anchor="middle" x="4.79711">TX</text>
+    </g>
+   </g>
+  </g>
+  <g partID="854158210">
+   <g transform="translate(16.7048,56.599)">
+    <g id="silkscreen">
+     <text y="4.31738" fill="black" id="label" font-size="4.79711" font-family="OCRA" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" stroke-width="0" text-anchor="middle" x="4.79711">RX</text>
+    </g>
+   </g>
+  </g>
+  <g partID="854158190">
+   <g transform="translate(16.428,64.4802)">
+    <g id="silkscreen">
+     <text y="4.31738" fill="black" id="label" font-size="4.7971" font-family="OCRA" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" stroke-width="0" text-anchor="middle" x="7.19564">GP0</text>
+    </g>
+   </g>
+  </g>
+  <g partID="854158170">
+   <g transform="translate(16.7312,14.1611)">
+    <g id="silkscreen">
+     <text y="4.31738" fill="black" id="label" font-size="4.7971" font-family="OCRA" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" stroke-width="0" text-anchor="middle" x="7.19564">GP2</text>
+    </g>
+   </g>
+  </g>
+  <g partID="854158150">
+   <g transform="translate(16.5336,20.9358)">
+    <g id="silkscreen">
+     <text y="4.31738" fill="black" id="label" font-size="4.7971" font-family="OCRA" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" stroke-width="0" text-anchor="middle" x="7.19564">GND</text>
+    </g>
+   </g>
+  </g>
+  <g partID="854158110">
+   <g transform="translate(52.7376,42.2862)">
+    <g id="silkscreen">
+     <text y="4.31738" fill="black" id="label" font-size="4.7971" font-family="OCRA" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" stroke-width="0" text-anchor="middle" x="7.19564">GP0</text>
+    </g>
+   </g>
+  </g>
+  <g partID="854158090">
+   <g transform="translate(52.8032,35.0769)">
+    <g id="silkscreen">
+     <text y="4.31738" fill="black" id="label" font-size="4.7971" font-family="OCRA" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" stroke-width="0" text-anchor="middle" x="7.19564">GP2</text>
+    </g>
+   </g>
+  </g>
+  <g partID="854158070">
+   <g transform="translate(52.6128,27.7505)">
+    <g id="silkscreen">
+     <text y="4.31738" fill="black" id="label" font-size="4.7971" font-family="OCRA" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" stroke-width="0" text-anchor="middle" x="7.19564">GND</text>
+    </g>
+   </g>
+  </g>
+  <g partID="854158020">
+   <g transform="translate(52.6128,27.7505)">
+    <g id="silkscreen">
+     <text y="4.31738" fill="black" id="label" font-size="4.7971" font-family="OCRA" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" stroke-width="0" text-anchor="middle" x="7.19564">GND</text>
+    </g>
+   </g>
+  </g>
+  <g partID="854156650" id="partLabel">
+   <g transform="translate(38.6208,20.4358)">
+    <g font-weight="normal" fill="#000000" stroke="none" font-size="5" id="silkscreenLabel" font-family="'OCRA'" font-style="normal" fill-opacity="1">
+     <text y="3.75" x="0">ESP--></text>
+    </g>
+   </g>
+  </g>
+  <g partID="854157650" id="partLabel">
+   <g transform="translate(3.2584,6.03584)">
+    <g font-weight="normal" fill="#000000" stroke="none" font-size="5" id="silkscreenLabel" font-family="'OCRA'" font-style="normal" fill-opacity="1">
+     <text y="3.75" x="0">Bboard</text>
+    </g>
+   </g>
+  </g>
+  <g partID="854157652">
+   <g transform="translate(8,11.6358)">
+    <g id="copper1" flipped="1">
+     <g transform="matrix(-1, 0, 0, 1, 10.08, 0)">
+      <g>
+       <g>
+        <g>
+         <circle fill="white" stroke="white" id="connector0pin" cx="5.04" cy="5.04" r="2.088" stroke-width="2.16"/>
+         <circle fill="white" stroke="white" id="connector1pin" cx="5.04" cy="12.24" r="2.088" stroke-width="2.16"/>
+         <circle fill="white" stroke="white" id="connector2pin" cx="5.04" cy="19.44" r="2.088" stroke-width="2.16"/>
+         <circle fill="white" stroke="white" id="connector3pin" cx="5.04" cy="26.64" r="2.088" stroke-width="2.16"/>
+         <circle fill="white" stroke="white" id="connector4pin" cx="5.04" cy="33.84" r="2.088" stroke-width="2.16"/>
+         <circle fill="white" stroke="white" id="connector5pin" cx="5.04" cy="41.04" r="2.088" stroke-width="2.16"/>
+         <circle fill="white" stroke="white" id="connector6pin" cx="5.04" cy="48.24" r="2.088" stroke-width="2.16"/>
+         <circle fill="white" stroke="white" id="connector7pin" cx="5.04" cy="55.44" r="2.088" stroke-width="2.16"/>
+        </g>
+        <g>
+         <g id="copper0">
+          <circle fill="white" stroke="white" id="connector0pin" cx="5.04" cy="5.04" r="2.088" stroke-width="2.16"/>
+          <circle fill="white" stroke="white" id="connector1pin" cx="5.04" cy="12.24" r="2.088" stroke-width="2.16"/>
+          <circle fill="white" stroke="white" id="connector2pin" cx="5.04" cy="19.44" r="2.088" stroke-width="2.16"/>
+          <circle fill="white" stroke="white" id="connector3pin" cx="5.04" cy="26.64" r="2.088" stroke-width="2.16"/>
+          <circle fill="white" stroke="white" id="connector4pin" cx="5.04" cy="33.84" r="2.088" stroke-width="2.16"/>
+          <circle fill="white" stroke="white" id="connector5pin" cx="5.04" cy="41.04" r="2.088" stroke-width="2.16"/>
+          <circle fill="white" stroke="white" id="connector6pin" cx="5.04" cy="48.24" r="2.088" stroke-width="2.16"/>
+          <circle fill="white" stroke="white" id="connector7pin" cx="5.04" cy="55.44" r="2.088" stroke-width="2.16"/>
+         </g>
+        </g>
+       </g>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+  <g partID="854156652">
+   <g transform="translate(36.8,26.0358)">
+    <g id="copper1">
+     <g id="copper0">
+      <circle fill="white" stroke="white" id="connector0pin" cx="5.04" cy="5.04" r="2.088" stroke-width="2.16"/>
+      <circle fill="white" stroke="white" id="connector1pin" cx="5.04" cy="12.24" r="2.088" stroke-width="2.16"/>
+      <circle fill="white" stroke="white" id="connector2pin" cx="5.04" cy="19.44" r="2.088" stroke-width="2.16"/>
+      <circle fill="white" stroke="white" id="connector3pin" cx="5.04" cy="26.64" r="2.088" stroke-width="2.16"/>
+      <circle fill="white" stroke="white" id="connector0pin" cx="5.04" cy="5.04" r="2.088" stroke-width="2.16"/>
+      <circle fill="white" stroke="white" id="connector1pin" cx="5.04" cy="12.24" r="2.088" stroke-width="2.16"/>
+      <circle fill="white" stroke="white" id="connector2pin" cx="5.04" cy="19.44" r="2.088" stroke-width="2.16"/>
+      <circle fill="white" stroke="white" id="connector3pin" cx="5.04" cy="26.64" r="2.088" stroke-width="2.16"/>
+      <circle fill="white" stroke="white" id="connector4pin" cx="12.24" cy="26.64" r="2.088" stroke-width="2.16"/>
+      <circle fill="white" stroke="white" id="connector5pin" cx="12.24" cy="19.44" r="2.088" stroke-width="2.16"/>
+      <circle fill="white" stroke="white" id="connector6pin" cx="12.24" cy="12.24" r="2.088" stroke-width="2.16"/>
+      <circle fill="white" stroke="white" id="connector7pin" cx="12.24" cy="5.04" r="2.088" stroke-width="2.16"/>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>
