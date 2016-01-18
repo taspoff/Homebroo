@@ -87,9 +87,34 @@ http://vps220792.ovh.net:8890/stopG.py --> {"Sensor":"VanneG","State":0}
 http://vps220792.ovh.net:8890/stopH.py --> {"Sensor":"VanneH","State":0}
 http://vps220792.ovh.net:8890/stopI.py --> {"Sensor":"VanneI","State":0}
 http://vps220792.ovh.net:8890/stopJ.py --> {"Sensor":"VanneJ","State":0}
+  Active ou desactive les vannes a A a J
   
 
+http://vps220792.ovh.net:8890/startR1.py --> {"Sensor":"Resistance1","State":1}
+http://vps220792.ovh.net:8890/startB1.py --> {"Sensor":"Bruleur1","State":1}
+http://vps220792.ovh.net:8890/startB2.py --> {"Sensor":"Bruleur2","State":1} 
+http://vps220792.ovh.net:8890/stopR1.py --> {"Sensor":"Resistance1","State":0}
+http://vps220792.ovh.net:8890/stopB1.py --> {"Sensor":"Bruleur1","State":0}
+http://vps220792.ovh.net:8890/stopB2.py --> {"Sensor":"Bruleur2","State":0} 
+  Active ou desactive les resistances R1 et bruleurs B1 et B2
+
+http://vps220792.ovh.net:8890/startP1.py -->{"Sensor":"Pompe1","State":1}
+http://vps220792.ovh.net:8890/startP2.py -->{"Sensor":"Pompe2","State":1}
+http://vps220792.ovh.net:8890/startP3.py -->{"Sensor":"Pompe3","State":1}
+http://vps220792.ovh.net:8890/stopP1.py -->{"Sensor":"Pompe1","State":0}
+http://vps220792.ovh.net:8890/stopP2.py -->{"Sensor":"Pompe2","State":0}
+http://vps220792.ovh.net:8890/stopP3.py -->{"Sensor":"Pompe3","State":0}
+  Active ou desactive les pompes 1 a 3
+
+http://vps220792.ovh.net:8890/startPID1.py --> {"Sensor":"HotTank","PID":1}
+http://vps220792.ovh.net:8890/startPID2.py --> {"Sensor":"Ebu","PID":1}
+http://vps220792.ovh.net:8890/startPID3.py --> {"Sensor":"Mashtun","PID":1}
+http://vps220792.ovh.net:8890/stopPID1.py --> {"Sensor":"HotTank","PID":0}
+http://vps220792.ovh.net:8890/stopPID2.py --> {"Sensor":"Ebu","PID":0}
+http://vps220792.ovh.net:8890/stopPID3.py --> {"Sensor":"Mashtun","PID":0}  
+  Active ou desactive l'algorithmre de controle de la temperature PID1, 2 ou 3. L'activation de ces dernier amene le demarrage ou l'arret des elements chauffants et des pompes jusqu'a atteinte des temperatures cible au niveau des sondes.
   
+
   
 
 
