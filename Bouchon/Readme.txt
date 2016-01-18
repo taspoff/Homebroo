@@ -14,6 +14,7 @@ URLs
 (par standard : 0 = OFF (flux Ferme), 1 = ON (flux Ouvert))
 http://vps220792.ovh.net:8890/Reset.py
   mets les données de la base par defaut (vannes a Off, temperatures ambiantes, PIDs a Off, et cibles d'empatage)
+  a lancer au demarrage d'une session
 
 
 
