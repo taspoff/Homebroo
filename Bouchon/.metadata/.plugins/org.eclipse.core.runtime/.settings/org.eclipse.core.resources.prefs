@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+pathvariable.ArduinoLibPath=C\:/Applications/Arduino_IDE/libraries
+pathvariable.ArduinoPath=C\:/Applications/Arduino_IDE
+pathvariable.ArduinoPivateLibPath=C\:/Applications/Arduino_IDE/libraries
+pathvariable.ArduinoPrivateLibPath=C\:/Applications/Arduino_IDE/libraries
 version=1
