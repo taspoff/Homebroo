@@ -147,7 +147,17 @@ class Mock:
         else:
             self.Temperature3-=((self.Temperature3 - 20)/50)*deltatime;
             
+        if self.P1 > 0 :
+            self.Temperature2+=((self.Temperature1-self.Temperature2)/30)*deltatime;
+            self.Temperature1-=((self.Temperature1-self.Temperature2)/30)*deltatime;
+        if self.P2 > 0 :
+            self.Temperature3+=((self.Temperature2-self.Temperature3)/30)*deltatime;
+            self.Temperature2-=((self.Temperature2-self.Temperature3)/30)*deltatime;
+        if self.P3 > 0 :
+            self.Temperature2+=((self.Temperature3-self.Temperature2)/30)*deltatime;
+            self.Temperature3-=((self.Temperature3-self.Temperature2)/30)*deltatime;
             
+                        
         if self.Pid1 >0:
             if self.Temperature1 > self.Cible1:
                 self.R1 = 0
