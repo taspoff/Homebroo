@@ -1,3 +1,4 @@
+description.autobuilding=false
 eclipse.preferences.version=1
 pathvariable.ArduinoLibPath=C\:/Applications/Arduino_IDE/libraries
 pathvariable.ArduinoPath=C\:/Applications/Arduino_IDE
