@@ -1,0 +1,19 @@
+{
+	"name" : "Basique",
+	"Ingredients" : "",
+	"NbPhases" : 3,
+	"Phases" : 
+		[
+			{
+				"Name" : "Nettoyage",
+				"NbActions" : 3,
+				"Actions" : 
+					[
+						{"URL" : ""},
+						{"URL" : ""},
+						{"URL" : ""}
+					],
+				"Duree" : "30"			
+			}
+		]
+}

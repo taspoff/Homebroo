@@ -1,0 +1,11 @@
+{ 
+	"name" : "Pico1",
+	"background" : "./Images/FridayGeekLab_Pico_noIcon.png",
+	"NbSensors":1,
+	"Sensors" : [{"URL":"./Data/Sensor1.json"}],
+	"NbActors":1,
+	"Actors" : [{"URL":"./Data/Actor1.json"}],
+	"NbJunks" : 0,
+	"Junks" : [],
+	"Recipe" : "./Data/Recipe1.json"
+}
