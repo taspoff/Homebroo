@@ -14,6 +14,28 @@
 						{"URL" : ""}
 					],
 				"Duree" : "30"			
+			},
+			{
+				"Name" : "Vidange",
+				"NbActions" : 3,
+				"Actions" : 
+					[
+						{"URL" : ""},
+						{"URL" : ""},
+						{"URL" : ""}
+					],
+				"Duree" : "30"			
+			},
+			{
+				"Name" : "Remplissage",
+				"NbActions" : 3,
+				"Actions" : 
+					[
+						{"URL" : ""},
+						{"URL" : ""},
+						{"URL" : ""}
+					],
+				"Duree" : "30"			
 			}
 		]
 }

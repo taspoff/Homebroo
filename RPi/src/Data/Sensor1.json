@@ -1,22 +1,20 @@
 {
-	"name" : "T1",
-	"Image" : "./Images/BurnerOff.png",
-	"MAC" : "",
-	"X" : 10,
-	"y" : 10,
-	"NbLine" : 1,
-	"Lines" : [
-				{
-					"name" : "T1Temp",
-					"value" : "Temperature T1",
-					"Offset.x" : 5,
-					"Offset.y" : 5
+	"name":"T1",
+	"Image":"./Images/Temperature.png",
+	"MAC":"",
+	"X":"10",
+	"Y":"10",
+	"Lines":[{
+					"name":"T1Temp",
+					"value":"Temperature T1",
+					"Offset.x":"5",
+					"Offset.y":"5"
 				},
 				{
 					"name":"T1",
-					"value" : "15°C",
-					"Offset.x" : 5,
-					"Offset.y" : 15
+					"value":"15°C",
+					"Offset.x":"5",
+					"Offset.y":"15"
 				}
 			]
 }

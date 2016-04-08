@@ -1,0 +1,8 @@
+{ 
+	"name" : "Pico2",
+	"background" : "./Images/BurnerOn.png",
+	"Sensors" : [{"id":"0","URL":"./Data/Sensor1.json"}],
+	"Actors" : [{"id":"0","URL":"./Data/Actor1.json"}],
+	"Junks" : [],
+	"Recipe" : "./Data/Recipe1.json"
+}

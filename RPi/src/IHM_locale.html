@@ -8,15 +8,15 @@
 
 <div class="w3-container">
 	<h2><CENTER>Homebroo</CENTER></h2>
-	<p class="w3-large"><button>Charger Pico</button><button>Charger Recette</button></p>
+	<p class="w3-large"><button id="LoadPico" onClick="Load_Pico()">Charger Pico</button><button id="Loadrecipe" onclick="Load_Recette()">Charger Recette</button></p>
 </div>
 
-<div class="w3-row w3-border">
+<div class="w3-row w3-border" >
 	<div class="w3-third w3-container w3-orange">
   	<h2><div id='MenuName'></div> </h2>  
   	<p> <div id=idphase class="w3-dropdown-hover">
-    <a href="#">Phase : <i class="fa fa-caret-down"></i></a>
-    	<div class="w3-dropdown-content w3-white w3-card-4">
+    <a href="#" id="Phases">Phase : <i class="fa fa-caret-down"></i></a>
+    	<div class="w3-dropdown-content w3-white w3-card-4" id="TabPhase">
       	<a href="#">Link 1</a>
 	    <a href="#">Link 2</a>
       	<a href="#">Link 3</a>
@@ -27,7 +27,7 @@
   	<canvas id="DisplayPico" width="640" height="480"></canvas>
 	</div>
 </div>
-<div class="w3-container">
+<div class="w3-container" id="Footnote">
 	Footnote	
 </div>
 </body>
