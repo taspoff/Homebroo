@@ -13,7 +13,7 @@ const size_t nbWifi = 3;
 const configWifi tabWifi[nbWifi]= {
   {"Homebruino_FG",
     "Livebox-Taspoff",
-    "Athena_96",
+    "xxxx",
     0,
     {192,168,1,213},
     {255,255,255,0},
